@@ -1,0 +1,9 @@
+<ion-view>
+	<ion-content>
+		<ion-list class="list-inset">
+			<ion-item class="item-text-wrap" ng-repeat="product in products | idProduct==wichproduct">
+				<img src="{{ product.image }}" alt="{{ product.ref }}">
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

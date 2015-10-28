@@ -1,0 +1,23 @@
+<ion-view title="CodeBar Scanner">
+	<ion-content id="content"> 
+	<div class="card">
+  <div class="item ion-qr-scanner item-divider">
+    Scan your catalogues
+  </div>
+  <div class="item  item-text-wrap">
+    Thanks to myCatalogue you can scan and download your paper catalogue here . Try it now for free by clicking on the click me button <i class="ion-information-circled"></i>
+  </div>
+  <div class="item item-divider ">
+    <img  src="img/barcode-icon.png" style="width:100% ;"
+    ng-click="scanBarcode()"/>
+  </div>
+</div>
+		 
+
+    <button class="button icon-left  ion-qr-scanner button-full button-assertive" ng-click="scanBarcode()">
+  Click Me <i class="ion-information-circled"></i>
+</button>
+     
+ 
+	</ion-content>
+</ion-view>

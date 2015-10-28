@@ -1,0 +1,95 @@
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+angular.module('myCatalogue', ['ionic','ngCordova'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+})
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $stateProvider
+
+  .state('app', {
+      url: '/app',
+      templateUrl: 'templates/sideMenu.html',
+      abstract: true
+  })
+  .state('app.AllProducts', {
+    url: '/AllProducts',
+    views: {
+        'mainContent': {
+          templateUrl: 'templates/getAllProducts.html',
+          controller: 'productController'
+        }
+      }
+  })
+  .state('app.ProductDetail', {
+    url: '/AllProducts/:aId',
+    views: {
+        'mainContent': {
+          templateUrl: 'templates/productDetail.html',
+          controller: 'productController'
+        }
+      }
+  })
+  .state('app.tabsLocations', {
+    url: '/tabsLocations',
+    views: {
+        'mainContent': {
+          templateUrl: 'templates/tabsLocations.html',
+          abstract: true
+        }
+      }
+  })
+  .state('app.tabsLocations.map', {
+    url: '/tabsLocationsMap',
+    views: {
+        'map-tab': {
+          templateUrl: 'templates/locations.html',
+          controller: 'locationsController'
+        }
+      }
+  })
+  .state('app.tabsLocations.listLocations', {
+    url: '/TabsLocationsList',
+    views: {
+        'list-tab': {
+          templateUrl: 'templates/listLocations.html',
+          controller: 'locationsListController',
+          
+        }
+      }
+  })
+.state('app.tabsLocations.listLocationsdetails', {
+    url: '/TabsLocationsListDetails?longi&lat',
+    views: {
+        'list-tab': {
+          templateUrl: 'templates/locationDetails.html',
+          controller: 'locationsListDetailsController',
+           
+        }
+      }
+  })
+.state('app.CodeBarScanner', {
+    url: '/CodeBarScanner',
+    views: {
+        'mainContent': {
+          templateUrl: 'templates/codebarscanner.html',
+          controller: 'codebarscannersController'
+        }
+      }
+  })
+  $urlRouterProvider.otherwise('/app/AllProducts');
+   
+});

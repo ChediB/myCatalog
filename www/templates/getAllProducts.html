@@ -1,0 +1,50 @@
+<ion-view title="Products List">
+	<ion-content>
+		<div class="product_grid">
+		  <ul class="product_list list">
+		    <li class="product_item" ng-repeat="product in products" href="#/app/AllProducts/{{ product.idProduct }}">
+		    	<div ng-show="product.reduction" class="product_sale">
+		        	<p>On Sale</p>
+		      	</div>
+		      <div class="product_image">
+		        	<!--<img src="http://bit.ly/1onMfJL" alt="">-->
+		        	<img src="{{ product.image }}" alt="{{ product.ref }}">
+		          <div class="product_buttons">
+		            <button class="product_heart"><i class="ion-heart"></i></button>
+		            <button class="product_compare"><i class="ion-shuffle"></i></button>
+		            <button class="add_to_cart"><i class="ion-ios-cart"></i></button>
+		            <div class="quick_view">
+		              <a href="#"><h6>Quick View</h6></a>
+		            </div>
+		          </div>
+		      </div>
+		      <div class="product_values">
+		        <div class="product_title">
+		          <h5>{{ product.name }}</h5>
+		          <h6 style="color:blue;font-size:.8em;text-align: center;">ref: {{ product.ref }}</h6>
+		        </div>
+		        <div class="product_price">
+		          <a href="#" ng-show="product.reduction">
+		          	<span class="price_old">{{ product.price }} DT</span> 
+		          	<span class="price_new">{{ product.reduction }} DT</span>
+		          </a>
+		          <a href="#" ng-show="!product.reduction">
+		          	<span class="price_new">{{ product.price }} DT</span> 
+		          </a>
+		           <span class="product_rating"></span>
+		        </div>
+		        <div class="product_desc">
+		          <p class="truncate">{{ product.description }}</p>
+		        </div>
+		        <div class="product_buttons">
+		          <button class="product_heart"><i class="ion-heart"></i></button>
+		          <button class="product_compare"><i class="ion-shuffle"></i></button>
+		          <button class="add_to_cart"><i class="ion-ios-cart"></i></button>
+		        </div>
+		      </div>
+		    </li>    
+		  </ul>
+		</div>
+	</ion-content>
+	
+</ion-view>

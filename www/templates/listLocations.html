@@ -1,0 +1,23 @@
+<ion-view title="Supermarkets">
+	<ion-content style="margin-top:20%;">
+   <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+  <div  class="list card"  ng-repeat="x in locations" ng-click='goTo({{x}})'>
+       
+  <div  class="item item-divider">
+     <h1> {{x.name}} </h1>
+    </div> 
+   <div class="item"  style="height: 120px;">
+<img ng-src="img/map.png" alt="{{x.name}} " />
+   </div>
+
+   <div class="item item-divider" >
+    <i class="ion ion-location"> </i> {{x.adresse}}
+   </div>
+    
+</div>
+	</ion-content>
+  
+</ion-view>
