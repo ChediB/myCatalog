@@ -1,11 +1,11 @@
 (function(){
 	'use strict';
 var myapp=angular.module('myCatalogue');
-myapp.controller('locationsController',['$cordovaLaunchNavigator','$scope','$ionicLoading','locationsService',locationsController ]);
+myapp.controller('locationsController',['$state','$cordovaLaunchNavigator','$scope','$ionicLoading','locationsService',locationsController ]);
 
-			function locationsController($cordovaLaunchNavigator,$scope,$ionicLoading,locationsService)
+			function locationsController($state,$cordovaLaunchNavigator,$scope,$ionicLoading,locationsService)
   		{ 
-  			  
+var init =0;
   var options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -25,12 +25,16 @@ myapp.controller('locationsController',['$cordovaLaunchNavigator','$scope','$ion
 			var  myLatlng = new google.maps.LatLng(36.782235,10.161130);
         var mapOptions = {
           center: myLatlng,
-          zoom: 09,
+          zoom: 08,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
-        	
+
+         var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+	directionsDisplay.setMap(map);
+
        var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
@@ -46,6 +50,25 @@ myapp.controller('locationsController',['$cordovaLaunchNavigator','$scope','$ion
         return function() {
           infowindow.setContent(data[i].name);
           infowindow.open(map, marker);
+         navigator.geolocation.getCurrentPosition(function(position) {
+     console.log(position.coords.latitude,position.coords.longitude);
+     var start  = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      var  end = new google.maps.LatLng(data[i].longitude, data[i].latitude);
+  directionsService.route({
+    origin: start,
+    destination:end,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+    });
+    
+     
+
 
         }
       })(marker, i));
