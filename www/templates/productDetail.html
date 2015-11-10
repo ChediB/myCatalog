@@ -1,9 +1,38 @@
-<ion-view>
+<ion-view title="{{ product.name }}">
 	<ion-content>
-		<ion-list class="list-inset">
-			<ion-item class="item-text-wrap" ng-repeat="product in products | idProduct==wichproduct">
-				<img src="{{ product.image }}" alt="{{ product.ref }}">
-			</ion-item>
-		</ion-list>
+		<div class="list card">
+			<div class="item">
+				<h2>{{ product.name }}</h2>
+				<p>{{ product.price }} DT</p>
+			</div>
+
+			<div class="item item-body">
+				<div class="item item-image">
+					<img class="full-image" src="{{ product.image }}" width="100%" alt="{{ product.ref }}" style="max-width:200px;"/> 
+				</div>
+			 	 
+ 				<p>
+			      {{ product.description }}
+			    </p>
+			    <p>
+			      <a href="#" class="subdued">1 Like</a>
+			      <a href="#" class="subdued">5 Comments</a>
+			    </p>
+			</div>
+			<div class="item tabs tabs-secondary tabs-icon-left">
+				<a class="tab-item" href="#">
+			      <i class="icon ion-thumbsup"></i>
+			      Like
+			    </a>
+			    <a class="tab-item" href="#">
+			      <i class="icon ion-chatbox"></i>
+			      Comment
+			    </a>
+			    <a class="tab-item" href="#">
+			      <i class="icon ion-android-cart"></i>
+			      Add to list
+			    </a>
+			</div>
+		</div>
 	</ion-content>
 </ion-view>

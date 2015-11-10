@@ -1,8 +1,9 @@
 <ion-view title="Products List">
 	<ion-content>
 		<div class="product_grid">
-		  <ul class="product_list list">
-		    <li class="product_item" ng-repeat="product in products" href="#/app/AllProducts/{{ product.idProduct }}">
+		  <ion-list class="product_list list">
+		    <ion-item class="product_item" ng-repeat="product in products"  ng-href="#/app/AllProducts/{{ product.idProduct }}">
+
 		    	<div ng-show="product.reduction" class="product_sale">
 		        	<p>On Sale</p>
 		      	</div>
@@ -42,8 +43,9 @@
 		          <button class="add_to_cart"><i class="ion-ios-cart"></i></button>
 		        </div>
 		      </div>
-		    </li>    
-		  </ul>
+		  
+		    </ion-item>    
+		  </ion-list>
 		</div>
 	</ion-content>
 	

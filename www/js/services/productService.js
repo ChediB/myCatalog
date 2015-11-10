@@ -10,13 +10,13 @@ angular.module("myCatalogue").factory('productService', function($http){
 	};
 
 	productFactory.getProductDetail = function(id){
+   
 		var req = {
        		method: 'GET',
-       		url: "http://www.nao-secretary.com/mycatalogue/getProduct.php",
-       		data: {
-       			idProduct : id
-       		}
+       		url: "http://www.nao-secretary.com/mycatalogue/getProduct.php?idProduct="+id,
+       		data: {}
      	};
+ console.log( req.url);
       	return $http(req);
 	};
 
