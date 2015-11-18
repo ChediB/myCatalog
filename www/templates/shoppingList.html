@@ -1,0 +1,25 @@
+<ion-view cache-view="false" title="Shopping List" >
+	<div class="bar bar-subheader">
+		<button class="button"
+		ng-show="!shouldShowDelete" ng-click="shouldShowDelete = !shouldShowDelete">Edit</button>
+		<button class="button" ng-show="shouldShowDelete" ng-click="shouldShowDelete = !shouldShowDelete">Ok</button>
+		<h4 class="title">Total Price : {{price}} DT</h4>
+	</div>
+	<ion-content class="has-subheader">
+   		<ion-list
+   			show-delete="shouldShowDelete"
+          show-reorder="shouldShowReorder"
+          can-swipe="listCanSwipe">
+   			<ion-item class="item-icon-left" ng-repeat="product in products"> 
+		    	<img class="icon" src="img/ionic.png" style="height:80%;margin-top: 6px;" />
+			    <span style="margin-left:20px;">{{ product.productName }}</span>
+			    <span class="item-note">{{ product.productPrice }} DT</span>
+			    <ion-delete-button 
+			    	class="ion-minus-circled"
+			    	ng-click="deleteItem(product)">
+    			</ion-delete-button>  
+			</ion-item>
+   		</ion-list>
+	</ion-content>
+ 
+</ion-view>

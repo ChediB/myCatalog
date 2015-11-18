@@ -104,6 +104,15 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
         }
       }
   })
+.state('app.shoppingList', {
+  url: '/ShoppingList',
+  views: {
+    'mainContent': {
+      templateUrl: 'templates/shoppingList.html',
+      controller: 'shoppingListController'
+    }
+  }
+})
   $urlRouterProvider.otherwise('/app/AllProducts');
    
 });
