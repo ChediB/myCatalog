@@ -10,7 +10,7 @@
    			show-delete="shouldShowDelete"
           show-reorder="shouldShowReorder"
           can-swipe="listCanSwipe">
-   			<ion-item class="item-icon-left" ng-repeat="product in products"> 
+   			<ion-item class="item-icon-left" ng-repeat="product in products" ng-href="#/app/AllProducts/{{ product.productId }}"> 
 		    	<img class="icon" src="img/ionic.png" style="height:80%;margin-top: 6px;" />
 			    <span style="margin-left:20px;">{{ product.productName }}</span>
 			    <span class="item-note">{{ product.productPrice }} DT</span>

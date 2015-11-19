@@ -20,6 +20,9 @@ function productController($scope, $state, productService){
 function productDetailsController($scope, $state,$ionicLoading, productService, shoppingListService){
 	
    $scope.product = {};
+   
+   $scope.liked = false;
+   $scope.disliked = false;
 	
    $scope.show = $ionicLoading.show({
       content: 'Getting current location...',
@@ -28,6 +31,7 @@ function productDetailsController($scope, $state,$ionicLoading, productService, 
 
    productService.getProductDetail($state.params.aId).success(function(data){
 		$scope.product=data;
+      $scope.interact("likes","get");
 		$ionicLoading.hide();
 	}).error(function(){ 
 		console.log("GET PRODUCT DETAIL : Switch to offline mode");
@@ -65,17 +69,35 @@ function productDetailsController($scope, $state,$ionicLoading, productService, 
 		];
 	});
 
-	$scope.Like = function(){
-		productService.interact("add","like",$scope.product.id).success(function(data){
-			$scope.product.likes = data;
+	$scope.interact = function(type, action){
+		var paramObject = {
+         action : action,
+         type : type,
+         info : {
+            userId : 1,
+            productId : parseInt($scope.product.idProduct)
+         }
+      };
+      productService.interact(paramObject).success(function(data){
+			console.log(data);
+         $scope.product.likes = data.likes;
+         $scope.product.dislikes = data.dislikes;
+         $scope.checkInteraction(1);
 		});
 	};
 
-	$scope.Dislike = function(){
-		productService.interact("add","dislike",$scope.product.id).success(function(data){
-			$scope.product.dislikes = data;
-		});
-	};
+   $scope.checkInteraction = function(idUser){
+      $scope.liked = false
+      $scope.product.likes.forEach(function(entry){
+         if(entry.userId==idUser)$scope.liked=true;
+      });
+
+      $scope.disliked = false
+      $scope.product.dislikes.forEach(function(entry){
+         if(entry.userId==idUser)$scope.disliked=true;
+      });
+   }
+
 
    $scope.Comment = function(comment){
 		productService.interact("add",comment,$scope.product.id).success(function(){

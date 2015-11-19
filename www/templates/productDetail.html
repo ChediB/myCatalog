@@ -1,5 +1,32 @@
 <ion-view title="{{ product.name }}">
+		<div class="tabs tabs-icon-top ">
+			<a ng-show="!liked"class="tab-item" href="#" ng-click='interact("likes", "add")'>
+		      <i class="icon ion-thumbsup"></i>
+		      <span>Like</span>
+		    </a>
+		    <a ng-show="liked"class="tab-item" href="#" ng-click='interact("likes", "remove")'>
+		      <i class="icon ion-thumbsup positive"></i>
+		      <span class="positive">Like</span>
+		    </a>
+		    <a ng-show="!disliked" class="tab-item" href="#" ng-click='interact("dislikes", "add")'>
+		      <i class="icon ion-thumbsdown"></i>
+		      <span>disLike</span>
+		    </a>
+		    <a ng-show="disliked" class="tab-item" href="#" ng-click='interact("dislikes", "remove")'>
+		      <i class="icon ion-thumbsdown positive"></i>
+		      <span class="positive">disLike</span>
+		    </a>
+		    <a class="tab-item" href="#" ng-click="Comment">
+		      <i class="icon ion-chatbox"></i>
+		      Comment
+		    </a>
+		    <a class="tab-item" href="#" ng-click="addItem()">
+		      <i class="icon ion-android-cart"></i>
+		      Add to list
+		    </a>
+		</div>
 	<ion-content>
+		
 		<div class="list card">
 			<div class="item">
 				<h2>{{ product.name }}</h2>
@@ -23,24 +50,7 @@
 			      <a href="#" class="subdued" ng-if="product.comments.length<2">{{product.comments.length}} Comment</a>
 			    </p>
 			</div>
-			<div class="item tabs tabs-secondary tabs-icon-left " style="background-color:#FF695D;color:white;">
-				<a class="tab-item" href="#" ng-click="Like()">
-			      <i class="icon ion-thumbsup"></i>
-			      Like
-			    </a>
-			    <a class="tab-item" href="#" ng-click="Dislike">
-			      <i class="icon ion-thumbsdown"></i>
-			      disLike
-			    </a>
-			    <a class="tab-item" href="#" ng-click="Comment">
-			      <i class="icon ion-chatbox"></i>
-			      Comment
-			    </a>
-			    <a class="tab-item" href="#" ng-click="addItem()">
-			      <i class="icon ion-android-cart"></i>
-			      Add to list
-			    </a>
-			</div>
+
 			<div class="item list">
 				<a href="" class="item item-avatar" ng-repeat="comment in product.comments">
 					<img src="{{comment.image}}">
@@ -48,7 +58,14 @@
 					<h2>{{comment.name}}</h2>
 					<p>{{comment.body}}</p>
 				</a>
+				
 			</div>
+			<br />
+			
+
 		</div>
+
+		
+		
 	</ion-content>
 </ion-view>

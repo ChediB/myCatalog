@@ -44,33 +44,17 @@ angular.module("myCatalogue").factory('productService', function($http){
 
 
 	//action : "add"/"remove"
-	//type : "like"/"dislike"
-	productFactory.interact = function(action, type, interaction){ 
+	//type : "likes"/"dislikes"
+	productFactory.interact = function(data){ 
 		var req = {
        		method: 'POST',
-       		url: "http://www.nao-secretary.com/mycatalogue/interaction.php",
-       		data: {
-       			"action":action,
-       			"type":type,
-       			"interaction":interaction
-       		}
+       		url: "http://www.nao-secretary.com/mycatalogue/interact.php",
+       		data: "data="+JSON.stringify(data)
    		};
-      	return $http(req);
+      console.log(req.data);
+      	return $http.post(req.url, req.data);
 	}
 
-	//action : "add"/"remove"
-	productFactory.shoppingList = function(action, product){
-		var req = {
-       		method: 'POST',
-       		url: "http://www.nao-secretary.com/mycatalogue/shoppingList.php",
-       		data: {
-       			"action":action,
-       			"type":type,
-       			"interaction":interaction
-       		}
-   		};
-		return $http(req);
-	} 
 
 	return productFactory;
 });
