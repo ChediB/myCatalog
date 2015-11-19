@@ -30,16 +30,13 @@ angular.module("myCatalogue").factory('productService', function($http){
 	};
 
 	//action : "add"/"remove"
-	productFactory.comment = function(action, comment){
+	productFactory.comment = function(data){
 		var req = {
-       		method: 'POST',
        		url: "http://www.nao-secretary.com/mycatalogue/comment.php",
-       		data: {
-       			"action":action,
-       			"comment":comment
-       		}
+       		data: "data="+JSON.stringify(data)
      	};
-      	return $http(req);
+      console.log(req.data);
+      	return $http.post(req.url, req.data);
 	}
 
 
@@ -47,11 +44,10 @@ angular.module("myCatalogue").factory('productService', function($http){
 	//type : "likes"/"dislikes"
 	productFactory.interact = function(data){ 
 		var req = {
-       		method: 'POST',
        		url: "http://www.nao-secretary.com/mycatalogue/interact.php",
        		data: "data="+JSON.stringify(data)
    		};
-      console.log(req.data);
+        //console.log(req.data);
       	return $http.post(req.url, req.data);
 	}
 

@@ -35,7 +35,7 @@
 
 			<div class="item item-body">
 				<div class="item item-image">
-					<img class="full-image" src="{{ product.image }}" width="100%" alt="{{ product.ref }}" style="max-width:200px;margin-bottom: 20px;"/> 
+					<img class="full-image" ng-src="{{ product.image }}" width="100%" alt="{{ product.ref }}" style="max-width:200px;margin-bottom: 20px;"/> 
 				</div>
 			 	 
  				<p>
@@ -51,14 +51,13 @@
 			    </p>
 			</div>
 
-			<div class="item list">
+			<div class="item list" ng-if="product.comments.length>0">
 				<a href="" class="item item-avatar" ng-repeat="comment in product.comments">
-					<img src="{{comment.image}}">
-					<h4 style="color:#BBB;">{{comment.timeStamp}}</h4>
+					<img ng-src="{{comment.image}}">
+					<h4 style="color:#BBB;">{{comment.time}}</h4>
 					<h2>{{comment.name}}</h2>
-					<p>{{comment.body}}</p>
+					<p>{{comment.content}}</p>
 				</a>
-				
 			</div>
 			<br />
 			
