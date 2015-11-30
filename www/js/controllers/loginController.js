@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-angular.module('myCatalogue').controller('loginController',function($scope,loginService,$ionicLoading){
+angular.module('myCatalogue').controller('loginCtrl',function($scope,loginService,$ionicLoading){
 });
 
-});
+})();

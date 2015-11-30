@@ -38,7 +38,7 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
       templateUrl: 'templates/sideMenu.html',
       abstract: true
   })
-  .state('app.login', {
+  .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller : "loginCtrl"
@@ -118,6 +118,6 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
     }
   }
 })
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/login');
    
 });
