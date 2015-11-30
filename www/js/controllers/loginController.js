@@ -16,7 +16,7 @@ angular.module('myCatalogue').controller('loginCtrl',function($scope,$state,logi
     		{
     			window.localStorage['user'] = JSON.stringify(data);
     			$state.go('app.AllProducts');
-    			//var post = JSON.parse(window.localStorage['post'] || '{}');
+    			//var user = JSON.parse(window.localStorage['user'];
     		}else
     		{
     			var alertPopup = $ionicPopup.alert({

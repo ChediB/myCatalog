@@ -19,23 +19,26 @@ angular.module('myCatalogue').controller('shoppingListController',function($scop
 	};
 
 	$scope.deleteItem = function(item){
+		//console.log("int : "+parseInt(item.shoppinglistId));
+		$ionicLoading.show({
+	      content: 'Loading...',
+	      showBackdrop: false
+		});
 		var paramObject = {
          	action : "removeItem",
          	info : {
-            	Owner : item.userId,
-            	idProduct : parseInt(item.productId),
-            	name : item.productName,
-            	price : parseFloat(item.productPrice)
+            	id : parseInt(item.shoppinglistId),
+            	Owner : parseInt(item.userId)
          	}
       	};
       	//console.log(item);
       	
-      	shoppingListService.ShoppingList({action:"removeItem",info:item}).success(function(data){
-			if(data=="success")
+      	shoppingListService.ShoppingList(paramObject).success(function(data){
+			//console.log(data);
+			$ionicLoading.hide();
+			if(data.message=="success")
 			{
-				var index = $scope.products.indexOf(item);
-				console.log("delete shopping list item : "+data.productName);
-				$scope.products.splice(index,1);
+				$scope.products = data.data;
 				$scope.calculatePrices();	
 			}
 		});

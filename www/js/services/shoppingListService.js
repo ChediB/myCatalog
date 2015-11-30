@@ -9,7 +9,7 @@ angular.module('myCatalogue').factory('shoppingListService',function($http){
 	
 	//action : "getList"/"addItem"/"removeItem"
 	shoppingFactory.ShoppingList = function(data){
-		console.log("Shopping List Service : "+JSON.stringify(data));
+		//console.log("Shopping List Service : "+JSON.stringify(data));
 		var req = {
        		url: "http://www.nao-secretary.com/mycatalogue/ShoppingList.php",
 			data: "data="+JSON.stringify(data)

@@ -75,18 +75,22 @@ function productDetailsController($scope, $state, $ionicLoading, $ionicPopup, pr
    }
 
    $scope.Comment = function(action){
+      var user = JSON.parse(window.localStorage['user']);
+      //console.log(user);
       var paramObject = {
          action : action,
          info : {
             time : new Date().toJSON(),
             idProduct : parseInt($scope.product.idProduct),
-            idUser : 1,
-            content : $scope.newComment.content
+            idUser : parseInt(user.idUser),
+            content : $scope.newComment.content,
+            fullName : user.fullName
          }
       };
       //console.log(paramObject);
       productService.comment(paramObject).success(function(data){
          //console.log("get Comments response : "+data);
+         console.log(data);
          $scope.product.comments = data.data;
 		});
 	};
@@ -121,8 +125,10 @@ function productDetailsController($scope, $state, $ionicLoading, $ionicPopup, pr
       };
 
       shoppingListService.ShoppingList(paramObject).success(function(data){
+         //console.log($scope.product.idProduct);
+         //console.log(data);
          $scope.shoppingList = data.data;
-         Bought($scope.shoppingList, $scope.product.productId);
+         Bought($scope.shoppingList, $scope.product.idProduct);
       })
    }
 
@@ -145,6 +151,7 @@ function productDetailsController($scope, $state, $ionicLoading, $ionicPopup, pr
    }
 
   var Bought = function(shoppingList, productId){
+      $scope.shopCount = 0;
       shoppingList.forEach(function(shop) {
          if(parseInt(shop.productId) == productId){
             $scope.shopCount++;
