@@ -1,20 +1,21 @@
 <ion-view title="Login" hide-nav-bar="true" hide-back-button="true" class="signup-background" >
-  <ion-content class="padding">
+  <ion-content class="padding" style="text-align:center;">
+    <img ng-src="img/logo-myCatalog.png" style="margin: 100px 0 20px 0"/>
     <form ng-if="!connected" method="post" ng-submit="dologin()">
-      <div class="list">
+      <div class="list list-inset" style="text-align:left;">
         <label class="item item-input" style="background:transparent;"><!-- item-floating-label -->
-          <span class="input-label" style="color:#ed7217">Email: </span>
-          <input type="text" style="color:white" ng-model="user.username" required="true">
+          <span class="input-label assertive">Email : </span>
+          <input type="text" style="color:#111" ng-model="user.username" required="true">
         </label>
         <label class="item item-input" style="background:transparent;">
-          <span class="input-label" style="color:#ed7217">Password:</span>
-          <input style="color:white" type="password" ng-model="user.password" required="true">
+          <span class="input-label assertive">Password :</span>
+          <input style="color:#111" type="password" ng-model="user.password" required="true">
         </label>
       </div>
     </form>
 
-    <h2 class="title" style="margin-top:30%">
-      <button class="button button-full button-stable" style="background-color:#white;" ng-click="dologin()">
+    <h2 class="title" style="margin-top:10%">
+      <button class="button button-block button-stable" style="background-color:#white;" ng-click="dologin()">
         <h2 style="color:#white;">
           <h3 class="ion-unlocked assertive"> Sign in </h3>
       </button>
