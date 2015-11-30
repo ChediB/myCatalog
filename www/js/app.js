@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('myCatalogue', ['ionic','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope,$state) {
   $ionicPlatform.ready(function() {
     if(window.Connection) {
                 if(navigator.connection.type == Connection.NONE) {
@@ -28,6 +28,14 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+  });
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+      if(window.localStorage['user']=="" && toState.name!="login"){ //Assuming the AuthService holds authentication logic
+        // User isn’t authenticated
+        //console.log();
+        $state.go("login");
+        event.preventDefault(); 
+      }
   });
 })
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

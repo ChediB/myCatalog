@@ -42,7 +42,8 @@ angular.module('myCatalogue').controller('loginCtrl',function($scope,$state,logi
     $scope.dologout = function() {
         //console.log("LOGIN user: " + $scope.user.username + " - PW: " + $scope.user.password);
     	loginService.Connect({action:"disconnect",info:$scope.user}).success(function(data){
-    		
+    		window.localStorage['user'] = "";
+    		$state.go('login');
     	});
     }
 });

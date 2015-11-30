@@ -47,10 +47,9 @@
           <h1 class="title">Settings</h1>
         </ion-header-bar>
         <ion-content>
-          <ul class="list">
+          <ul class="list" ng-controller="loginCtrl">
             <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
-            <a href="#/event/check-in" class="item" menu-close>Check-in</a>
-            <a href="#/event/attendees" class="item" menu-close>Attendees</a>
+            <a href="#/event/check-in" ng-click="dologout()"class="item" menu-close>LogOut</a>
           </ul>
         </ion-content>
       </ion-side-menu>

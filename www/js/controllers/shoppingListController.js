@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-angular.module('myCatalogue').controller('shoppingListController',function($scope,shoppingListService,$ionicLoading){
+angular.module('myCatalogue').controller('shoppingListController',function($scope,$state,shoppingListService,$ionicLoading){
 	$scope.products = [];
 	$scope.shouldShowDelete = false;
 	$scope.price = 0;
