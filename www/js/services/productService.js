@@ -35,7 +35,7 @@ angular.module("myCatalogue").factory('productService', function($http){
        		url: "http://www.nao-secretary.com/mycatalogue/comment.php",
        		data: "data="+JSON.stringify(data)
      	};
-      console.log(req.data);
+      //console.log(req.data);
       	return $http.post(req.url, req.data);
 	}
 

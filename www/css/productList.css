@@ -231,7 +231,7 @@ ul.product_list {
     margin: 1%;
   }
   .product_item {
-    width: 49%;
+    width: 100%;
     margin: 5px;
   }
   .product_image {
@@ -274,7 +274,7 @@ ul.product_list {
 
 @media only screen and (min-width: 678px) {
   .product_item {
-    width: 32.5%;
+    width: 48%;
     margin: 5px;
   }
 }
@@ -289,7 +289,7 @@ ul.product_list {
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
   .product_item {
-    width: 24.25%;
+    width: 32%;
     margin: 5px;
   }
 }

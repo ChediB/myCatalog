@@ -1,0 +1,26 @@
+<ion-view title="Login" hide-nav-bar="true" hide-back-button="true" class="signup-background" >
+  <ion-content class="padding">
+    <img src="img/color-logo.png" style="margin-top:58%">
+    <form ng-if="!connected" method="post" ng-submit="dologin()">
+      <div class="list">
+        <label class="item item-input" style="background:transparent;"><!-- item-floating-label -->
+          <span class="input-label" style="color:#ed7217">Email: </span>
+          <input type="text" style="color:white" ng-model="user.username" required="true">
+        </label>
+        <label class="item item-input" style="background:transparent;">
+          <span class="input-label" style="color:#ed7217">Password:</span>
+          <input style="color:white" type="password" ng-model="user.password" required="true">
+        </label>
+      </div>
+    </form>
+
+    <h2 class="title" style="margin-top:30%">
+      <button class="button button-full button-stable" style="background-color:#white;" ng-click="dologin()">
+        <h2 style="color:#white;">
+          <h3 class="ion-unlocked" style="color:#ed7217"> Sign in </h3>
+      </button>
+      </h2>
+  </ion-content>
+
+
+</ion-view>

@@ -38,6 +38,11 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
       templateUrl: 'templates/sideMenu.html',
       abstract: true
   })
+  .state('app.login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller : "loginCtrl"
+  })
   .state('app.AllProducts', {
     url: '/AllProducts',
     views: {
@@ -113,6 +118,6 @@ angular.module('myCatalogue', ['ionic','ngCordova'])
     }
   }
 })
-  $urlRouterProvider.otherwise('/app/AllProducts');
+  $urlRouterProvider.otherwise('/app/login');
    
 });

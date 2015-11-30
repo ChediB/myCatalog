@@ -2,12 +2,13 @@
 	'use strict';
 var myapp=angular.module('myCatalogue');
 myapp.controller('productController',['$scope', '$state', 'productService',productController] );
-myapp.controller('productDetailsController',['$scope', '$state','$ionicLoading', 'productService','shoppingListService',productDetailsController] );
+myapp.controller('productDetailsController',['$scope', '$state','$ionicLoading', '$ionicPopup', 'productService','shoppingListService',productDetailsController] );
   
 
 
 function productController($scope, $state, productService){
 	$scope.products = [];
+   $scope.shoppingList = [];
 	$scope.wichproduct = $state.params.aId;
 	
 	productService.getAllProducts().success(function(data){
@@ -17,12 +18,15 @@ function productController($scope, $state, productService){
 	
 };
 
-function productDetailsController($scope, $state,$ionicLoading, productService, shoppingListService){
+function productDetailsController($scope, $state, $ionicLoading, $ionicPopup, productService, shoppingListService){
 	
    $scope.product = {};
    
    $scope.liked = false;
    $scope.disliked = false;
+   $scope.shopCount = 0;
+   $scope.shopped = false;
+   $scope.newComment = {content : ""};
 	
    $scope.show = $ionicLoading.show({
       content: 'Getting current location...',
@@ -33,6 +37,7 @@ function productDetailsController($scope, $state,$ionicLoading, productService, 
 		$scope.product=data;
       $scope.interact("likes","get");
       $scope.Comment("get");
+      $scope.getItem();
 		$ionicLoading.hide();
 	}).error(function(){ 
 		console.log("GET PRODUCT DETAIL : connexion error");
@@ -69,22 +74,40 @@ function productDetailsController($scope, $state,$ionicLoading, productService, 
       });
    }
 
-
    $scope.Comment = function(action){
-		var paramObject = {
+      var paramObject = {
          action : action,
          info : {
-            time : "201519112015",
+            time : new Date().toJSON(),
             idProduct : parseInt($scope.product.idProduct),
             idUser : 1,
-            content : "this a hello"
+            content : $scope.newComment.content
          }
       };
-      console.log(paramObject);
+      //console.log(paramObject);
       productService.comment(paramObject).success(function(data){
+         //console.log("get Comments response : "+data);
          $scope.product.comments = data.data;
 		});
 	};
+
+   $scope.newComment = function(){
+      var confirmPopup = $ionicPopup.confirm({
+         title: 'New comment',
+         scope: $scope,
+         templateUrl: 'templates/COMMENTpop.html',
+         buttons: [
+            { text: 'Cancel' },
+            {
+              text: 'OK',
+              type: 'button-assertive',
+              onTap: function() {
+                  $scope.Comment("add");
+              }
+            }
+          ]
+      });
+   }
 
    $scope.addItem = function(){
       var paramObject = {
@@ -96,12 +119,40 @@ function productDetailsController($scope, $state,$ionicLoading, productService, 
             price : parseFloat($scope.product.price)
          }
       };
-      //console.log(paramObject);
+
       shoppingListService.ShoppingList(paramObject).success(function(data){
-         console.log("add Item response : "+data);
+         $scope.shoppingList = data.data;
+         Bought($scope.shoppingList, $scope.product.productId);
       })
    }
 
+   $scope.getItem = function(){
+      var paramObject = {
+         action : "getList",
+         info : {
+            Owner : 1,
+            idProduct : parseInt($scope.product.idProduct),
+            name : $scope.product.name,
+            price : parseFloat($scope.product.price)
+         }
+      };
+      //console.log(paramObject);
+      shoppingListService.ShoppingList(paramObject).success(function(data){
+         $scope.shoppingList = data.data;
+         console.log(data);
+         Bought($scope.shoppingList, $scope.product.idProduct);
+      })
+   }
+
+  var Bought = function(shoppingList, productId){
+      shoppingList.forEach(function(shop) {
+         if(parseInt(shop.productId) == productId){
+            $scope.shopCount++;
+         }
+      });
+      if($scope.shopCount>0)$scope.shopped = true;
+      else $scope.shopped = false;
+  }
 
 
 };

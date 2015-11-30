@@ -1,10 +1,16 @@
 (function(){
 	'use strict';
 
-angular.module('myCatalogue').controller('shoppingListController',function($scope,shoppingListService){
+angular.module('myCatalogue').controller('shoppingListController',function($scope,shoppingListService,$ionicLoading){
 	$scope.products = [];
 	$scope.shouldShowDelete = false;
 	$scope.price = 0;
+
+	$scope.show = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+	});
+
 	$scope.calculatePrices = function(){
 		$scope.price = 0;
 		$scope.products.forEach(function(entry){
@@ -35,7 +41,8 @@ angular.module('myCatalogue').controller('shoppingListController',function($scop
 		});
 	};
 	shoppingListService.ShoppingList({action:"getList",info:{Owner:1}}).success(function(data){
-	   	$scope.products=data;
+	   	$ionicLoading.hide();
+	   	$scope.products=data.data;
 	   	$scope.calculatePrices();
 	   	//console.log(data);
 	}).error(function(){ console.log("get all products error.");});

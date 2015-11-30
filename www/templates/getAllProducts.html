@@ -1,7 +1,7 @@
 <ion-view title="Products List">
 	<ion-content>
 		<div class="product_grid">
-		  <ion-list class="product_list list">
+		  <ion-list class="product_list list" style="text-align: center;">
 		    <ion-item class="product_item" ng-repeat="product in products"  ng-href="#/app/AllProducts/{{ product.idProduct }}">
 
 		    	<div ng-show="product.reduction" class="product_sale">
@@ -9,7 +9,7 @@
 		      	</div>
 		      <div class="product_image">
 		        	<!--<img src="http://bit.ly/1onMfJL" alt="">-->
-		        	<img src="{{ product.image }}" alt="{{ product.ref }}">
+		        	<img ng-src="{{ product.image }}" alt="{{ product.ref }}">
 		          <div class="product_buttons">
 		            <button class="product_heart"><i class="ion-heart"></i></button>
 		            <button class="product_compare"><i class="ion-shuffle"></i></button>

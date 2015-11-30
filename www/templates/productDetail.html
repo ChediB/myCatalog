@@ -16,13 +16,18 @@
 		      <i class="icon ion-thumbsdown positive"></i>
 		      <span class="positive">disLike</span>
 		    </a>
-		    <a class="tab-item" href="#" ng-click="Comment">
+		    <a class="tab-item" href="#" ng-click="newComment()">
 		      <i class="icon ion-chatbox"></i>
 		      Comment
 		    </a>
-		    <a class="tab-item" href="#" ng-click="addItem()">
+		    
+		    <a ng-show="shopped" class="tab-item" href="#" ng-click="addItem()">
+		      <i class="icon ion-android-cart positive"></i>
+		      <span class="positive">( {{shopCount}} )</span>
+		    </a>
+		    <a ng-show="!shopped" class="tab-item" href="#" ng-click="addItem()">
 		      <i class="icon ion-android-cart"></i>
-		      Add to list
+		      <span>Add to list</span>
 		    </a>
 		</div>
 	<ion-content>
